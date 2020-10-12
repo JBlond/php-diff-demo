@@ -1,0 +1,222 @@
+/* Bootstrap v5.0.0-alpha1 Styles*/
+
+.Differences thead, .Differences tbody, .Differences tfoot, .Differences tr, .Differences td, .Differences th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+.Differences th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+}
+
+.Differences {
+    border-collapse:          separate;
+    border-color:             #DEE2E6;
+    border-radius:            0.25rem;
+    border-spacing:           0;
+    border-width:             1px;
+    caption-side:             bottom;
+    color:                    #212529;
+    margin-bottom:            1rem;
+    --bs-table-accent-bg:     transparent;
+    --bs-table-active-bg:     rgba(0, 0, 0, 0.1);
+    --bs-table-active-color:  #212529;
+    --bs-table-bg:            transparent;
+    --bs-table-hover-bg:      rgba(0, 0, 0, 0.075);
+    --bs-table-hover-color:   #212529;
+    --bs-table-striped-bg:    rgba(0, 0, 0, 0.05);
+    --bs-table-striped-color: #212529;
+    vertical-align:           top;
+    width:                    100%;
+}
+
+.Differences > :not(caption) > * > * {
+    background-color:    var(--bs-table-bg);
+    background-image:    linear-gradient(var(--bs-table-accent-bg), var(--bs-table-accent-bg));
+    border-bottom-width: 1px;
+    padding:             0 0.25rem 0;
+}
+
+.Differences > :not(caption) > * > * {
+    border-bottom-width: 0;
+}
+
+.Differences > tbody {
+    vertical-align: inherit;
+}
+
+.Differences > thead, .Differences th {
+    border-color:             #E3E4E5;
+    border-left-width:        1px;
+    color:                    #212529;
+    --bs-table-active-bg:     #E3E4E5;
+    --bs-table-active-color:  #212529;
+    --bs-table-bg:            #F8F9FA;
+    --bs-table-hover-bg:      #E8E9EA;
+    --bs-table-hover-color:   #212529;
+    --bs-table-striped-bg:    #EDEEF0;
+    --bs-table-striped-color: #212529;
+    vertical-align:           top;
+}
+
+.Differences > thead {
+    border-bottom-width: 1px;
+    border-top-width:    1px;
+}
+
+.Differences > :not(:last-child) > :last-child > * {
+    border-bottom-color: currentColor;
+}
+
+.Differences > tbody > tr:hover {
+    color:                var(--bs-table-hover-color);
+    --bs-table-accent-bg: var(--bs-table-hover-bg);
+}
+
+.Differences > thead th {
+    border-top-width: 1px;
+}
+
+.Differences tr > :last-child {
+    border-right-width: 1px;
+}
+
+.Differences tbody:last-child > tr:last-child > * {
+    border-bottom-width: 1px;
+}
+
+.Differences > thead th:first-child {
+    border-top-left-radius: 0.25rem;
+}
+
+.Differences > thead th:last-child {
+    border-top-right-radius: 0.25rem;
+}
+
+.Differences tbody:last-child > tr:last-child :first-child {
+    border-bottom-left-radius: 0.25rem;
+}
+
+.Differences tbody:last-child > tr:last-child :last-child {
+    border-bottom-right-radius: 0.25rem;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*
+ * Difference Styles
+ */
+
+/* HTML Side by Side Diff */
+.DifferencesSideBySide .ChangeInsert td.Left {
+    background: #DDFFDD;
+}
+
+.DifferencesSideBySide .ChangeInsert td.Right {
+    background: #CCFFCC;
+}
+
+.DifferencesSideBySide .ChangeDelete td.Left {
+    background: #FF8888;
+}
+
+.DifferencesSideBySide .ChangeDelete td.Right {
+    background: #FFAAAA;
+}
+
+.DifferencesSideBySide .ChangeReplace .Left {
+    background: #FFEE99;
+}
+
+.DifferencesSideBySide .ChangeReplace .Right {
+    background: #FFDD88;
+}
+
+.Differences ins, .Differences del {
+    text-decoration: none;
+}
+
+.DifferencesSideBySide .ChangeReplace ins, .DifferencesSideBySide .ChangeReplace del {
+    background: #FFCC00;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* HTML Inline Diff */
+
+.DifferencesInline > tbody.ChangeReplace:hover {
+    color:                var(--bs-table-hover-color);
+    --bs-table-accent-bg: var(--bs-table-hover-bg);
+}
+
+.DifferencesInline tbody.ChangeReplace .Left, tbody.DifferencesInline .ChangeDelete .Left {
+    background: #FFDDDD;
+}
+
+.DifferencesInline tbody.ChangeReplace .Right, tbody.DifferencesInline .ChangeInsert .Right {
+    background: #DDFFDD;
+}
+
+.DifferencesInline tbody.ChangeReplace ins {
+    background: #99EE99;
+}
+
+.DifferencesInline tbody.ChangeReplace del {
+    background: #EE9999;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* HTML Unified Diff */
+
+/* Line removed in new */
+.DifferencesUnified .ChangeDelete .Left::before {
+    content: "- \00a0";
+}
+
+.DifferencesUnified .ChangeDelete .Left {
+    background: #CCCCCC;
+}
+
+/* Line modified in old and new */
+.DifferencesUnified .ChangeReplace {
+    display:    table;
+    background: #FFEE99;
+}
+
+/* Line in old replaced by line in new */
+.DifferencesUnified .ChangeReplace .Left:first-child:before {
+    content: "\250C \00a0";
+}
+
+.DifferencesUnified .ChangeReplace .Left:before {
+    content: "\251C \00a0";
+}
+
+.DifferencesUnified .ChangeReplace .Left {
+    background: #FFEE99;
+}
+
+/* Line in new replaced line in old */
+.DifferencesUnified .ChangeReplace .Right:last-of-type:before {
+    content: "\2514 \00a0";
+}
+
+.DifferencesUnified .ChangeReplace .Right:before {
+    content: "\251C \00a0";
+}
+
+.DifferencesUnified .ChangeReplace .Right {
+    background: #FFEE99;
+}
+
+/* Line inserted in new */
+.DifferencesUnified .ChangeInsert .Right:before {
+    content: "+ \00A0";
+}
+
+/* Character inserted in line of new */
+.DifferencesUnified .ChangeReplace ins {
+    background: #99EE99;
+}
+
+/* Character removed from line in old */
+.DifferencesUnified .ChangeReplace del {
+    background: #EE9999;
+}

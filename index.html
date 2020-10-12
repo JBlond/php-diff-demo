@@ -1,0 +1,447 @@
+<!doctype html>
+<html class="h-100" lang="en">
+<head>
+    <title>Php-Diff Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Demo site for the php-diff package">
+    <meta name="author" content="Ferry Cools">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous"
+    >
+
+    <!-- Favicons -->
+    <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="favicon-32x32.png" type="image/png" rel="icon" sizes="32x32">
+    <link href="favicon-16x16.png" type="image/png" rel="icon" sizes="16x16">
+    <link href="site.webmanifest" rel="manifest">
+    <link href="safari-pinned-tab.svg" rel="mask-icon" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Custom styles for this template -->
+    <link href="css/floating-labels.css" rel="stylesheet">
+    <link id="diffCSS" rel="stylesheet" href="css/diffBootstrap.css">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img class="img-fluid" src="images/php-diff-logo.png" alt="Logo">
+                Php-Diff Demo
+                <span id="demoRelease">
+                    <span class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                    </span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse pl-5" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/JBlond/php-diff/wiki" target="_blank"
+                        >Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/JBlond/php-diff/releases/latest">Download</a>
+                    </li>
+                </ul>
+                <form id="wikiSearch" class="d-flex">
+                    <input class="form-control mr-2" type="search" name="q" placeholder="Wiki Search..."
+                           aria-label="Search"
+                    >
+                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container-fluid">
+        <noscript>
+            <div class="alert alert-danger text-center" role="alert">
+                Sorry, javascript is required for this demo application!
+            </div>
+        </noscript>
+
+        <div class="bg-light p-3 rounded">
+            <h1>Introduction</h1>
+            <p>
+                A comprehensive library for generating differences between two hashable objects (strings or arrays).
+                Generated differences can be rendered in all the standard formats including:
+            </p>
+
+            <ul>
+                <li>Side by Side <small class="text-muted">(Html)</small></li>
+                <li>Inline <small class="text-muted">(Html, Text, Cli)</small></li>
+                <li>Unified <small class="text-muted">(Html, Text, Cli)</small></li>
+                <li>Context <small class="text-muted">(Text)</small></li>
+            </ul>
+
+            <p>
+                The logic behind the core of the diff engine (ie, the sequence matcher) is primarily based on the Python
+                difflib package. The reason for doing so is primarily because of its high degree of accuracy.
+            </p>
+            <p>
+                Tryout the library below and visit the <a href="https://github.com/JBlond/php-diff/wiki">Wiki</a> for
+                documentation about how to use and customize the library to fit your own needs.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col" id="options">
+                <div class="mt-2 p-3 border rounded">
+                    <form id="optionsForm">
+                        <h4 class="highlight rounded">Diff Type</h4>
+                        <div class="form-text">
+                            Renderer
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Renderer options">
+                            <input class="btn-check rendererGroup" id="diffTypeSideBySide" name="diffType" type="radio"
+                                   value="SideBySide"
+                                   autocomplete="off"
+                                   checked
+                            >
+                            <label class="btn btn-outline-primary" for="diffTypeSideBySide">Side By Side</label>
+
+                            <input class="btn-check rendererGroup" id="diffTypeInline" name="diffType" type="radio"
+                                   value="Inline"
+                                   autocomplete="off"
+                            >
+                            <label class="btn btn-outline-primary" for="diffTypeInline">Inline</label>
+
+                            <input class="btn-check rendererGroup" id="diffTypeUnified" name="diffType" type="radio"
+                                   value="Unified"
+                                   autocomplete="off"
+                            >
+                            <label class="btn btn-outline-primary" for="diffTypeUnified">Unified</label>
+
+                            <input class="btn-check rendererGroup" id="diffContext" name="diffType" type="radio"
+                                   value="Context"
+                                   autocomplete="off"
+                            >
+                            <label class="btn btn-outline-primary" for="diffContext">Context</label>
+                        </div>
+
+                        <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                              title="Choose the type of diff view."
+                        ></span>
+
+                        <div class="form-text">
+                            Target &amp; Theme
+                        </div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Target and Theme Options">
+                            <div class="btn-group mb-3 mr-2" role="group" aria-label="Target options">
+                                <input class="btn-check outputGroup" id="outputTypeHTML" name="outputType"
+                                       type="radio"
+                                       value="Html" autocomplete="off" checked
+                                >
+                                <label class="btn btn-outline-primary" for="outputTypeHTML">Html</label>
+
+                                <input class="btn-check outputGroup" id="outputTypeText" name="outputType"
+                                       type="radio"
+                                       value="Text" autocomplete="off" disabled
+                                >
+                                <label class="btn btn-outline-primary disabled" for="outputTypeText">Text</label>
+
+                                <input class="btn-check outputGroup" id="outputTypeCLI" name="outputType"
+                                       type="radio"
+                                       value="Cli" autocomplete="off" disabled
+                                >
+                                <label class="btn btn-outline-primary disabled" for="outputTypeCLI">Cli</label>
+                            </div>
+                            <span data-toggle="tooltip" class="mr-2 icon icon-questionMark icon-primary"
+                                  title="Choose in what format the output will be rendered. Cli will emulate a command line interface."
+                            ></span>
+                            <div class="btn-group mb-3 mr-2" role="group" aria-label="Theme options">
+                                <input class="btn-check themeGroup" id="themeBootstrap" name="theme"
+                                       type="radio"
+                                       value="diffBootstrap.css" autocomplete="off" checked
+                                >
+                                <label class="btn btn-outline-primary" for="themeBootstrap">Bootstrap</label>
+
+                                <input class="btn-check themeGroup" id="themeLight" name="theme"
+                                       type="radio"
+                                       value="diffLight.css" autocomplete="off"
+                                >
+                                <label class="btn btn-outline-primary" for="themeLight">Light</label>
+
+                                <input class="btn-check themeGroup" id="themeDark" name="theme"
+                                       type="radio"
+                                       value="diffDark.css" autocomplete="off"
+                                >
+                                <label class="btn btn-outline-primary" for="themeDark">Dark</label>
+                            </div>
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Choose the theme for the rendered Html output. The styles are defined by a Css."
+                            ></span>
+                        </div>
+                        <h4 class="highlight rounded">Processing Options</h4>
+                        <div class="form-label-group">
+                            <div class="input-group mb-3">
+                                <input class="form-control" id="optionContext" type="number" value="3"
+                                       placeholder="Context"
+                                       min="0" name="optionContext"
+                                       required
+                                >
+                                <label for="optionContext">Context</label>
+                                <span class="input-group-text icon icon-questionMark icon-primary" data-toggle="tooltip"
+                                      title="The amount of lines to show around a difference."
+                                ></span>
+                            </div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="optionTrimEqual" type="checkbox" name="optionTrimEqual"
+                                   value="1"
+                            >
+                            <label class="form-check-label" for="optionTrimEqual">Trim equal blocks</label>
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Collapse blocks of lines without any difference."
+                            ></span>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="optionIgnoreWhitespace" type="checkbox"
+                                   name="optionIgnoreWhitespace" value="1" checked
+                            >
+                            <label class="form-check-label" for="optionIgnoreWhitespace">Ignore Whitespace</label>
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Ignore differences of whitespace characters. E.g. tabs versus spaces."
+                            ></span>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="optionIgnoreCase" type="checkbox"
+                                   name="optionIgnoreCase" value="1"
+                            >
+                            <label class="form-check-label" for="optionIgnoreCase">Ignore Case</label>
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Ignore differences in character casing. E.g. Capitalized versus small."
+                            ></span>
+                        </div>
+
+                        <h4 class="highlight rounded">Renderer Options</h4>
+                        <div class="form-text">
+                            Input Format
+                        </div>
+                        <div class="btn-group mb-3" role="group" aria-label="Input Format">
+                            <input class="btn-check" id="inputFormatHtml" name="inputFormat" type="radio" value="html"
+                                   autocomplete="off" checked
+                            >
+                            <label class="btn btn-outline-primary" for="inputFormatHtml">Html</label>
+
+                            <input class="btn-check" id="inputFormatPlain" name="inputFormat" type="radio" value="plain"
+                                   autocomplete="off"
+                            >
+                            <label class="btn btn-outline-primary" for="inputFormatPlain">Plain</label>
+                        </div>
+                        <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                              title="Choose the format of the inputs. When Html chosen, html tags are converter to entities in the output."
+                        ></span>
+                        <div class="form-label-group">
+                            <div class="input-group mb-3">
+                                <input class="form-control" id="optionTabSize" type="number" value="4"
+                                       placeholder="Context"
+                                       min="0" name="optionTabSize"
+                                       required
+                                >
+                                <label for="optionTabSize">Tab Size</label>
+                                <span class="input-group-text icon icon-questionMark icon-primary" data-toggle="tooltip"
+                                      title="Tab characters are replaced with spaces. Set the amount of spaces to represent one tab."
+                                ></span>
+                            </div>
+                        </div>
+
+                        <div class="htmlRendererOnly">
+                            <div class="form-label-group">
+                                <input class="form-control" id="optionTitle1" placeholder="Title Version 1"
+                                       name="optionTitle1" value="Version 1"
+                                >
+                                <label for="optionTitle1">Title Version 1</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input class="form-control" id="optionTitle2" placeholder="Title Version 2"
+                                       name="optionTitle2" value="Version 2"
+                                >
+                                <label for="optionTitle2">Title Version 2</label>
+                            </div>
+                        </div>
+
+                        <div style="display: none" id="cliRendererOnly">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" id="optionCliColor" type="checkbox"
+                                       name="optionCliColor"
+                                       value="1"
+                                >
+                                <label class="form-check-label" for="optionCliColor">Colorize Cli Output</label>
+                            </div>
+                            <div class="row">
+                                <div class="col form-label-group">
+                                    <input class="form-control" id="optionInsertColorF" type="color" value="#008000"
+                                           placeholder="Foreground color for Inserts" name="optionInsertColors[]"
+                                    >
+                                    <label class="pl-4" for="optionInsertColorF">Foreground color for Inserts</label>
+                                </div>
+                                <div class="col form-label-group">
+                                    <input class="form-control" id="optionInsertColorB" type="color" value="#000000"
+                                           placeholder="Background color for Inserts" name="optionInsertColors[]"
+                                    >
+                                    <label class="pl-4" for="optionInsertColorB">Background color for Inserts</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-label-group">
+                                    <input class="form-control" id="optionDeleteColorF" type="color" value="#800000"
+                                           placeholder="Foreground color for Deletions" name="optionDeleteColors[]"
+                                    >
+                                    <label class="pl-4" for="optionDeleteColorF">Foreground color for Deletions</label>
+                                </div>
+                                <div class="col form-label-group">
+                                    <input class="form-control" id="optionDeleteColorB" type="color" value="#000000"
+                                           placeholder="Background color for Deletions" name="optionDeleteColors[]"
+                                    >
+                                    <label class="pl-4" for="optionDeleteColorB">Background color for Deletions</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TODO: Set default values for the different renderers. -->
+                        <div class="form-text">
+                            Insert Markers
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Inserts are surrounded by the markers defined below."
+                            ></span>
+                        </div>
+                        <div class="row">
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionInsertStartMarker" placeholder="Start"
+                                       name="optionInsertMarkers[]" value="<ins>"
+                                >
+                                <label class="pl-4" for="optionInsertStartMarker">Start</label>
+                            </div>
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionInsertEndMarker" placeholder="End"
+                                       name="optionInsertMarkers[]" value="</ins>"
+                                >
+                                <label class="pl-4" for="optionInsertEndMarker">End</label>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            Delete Markers
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Deletions are surrounded by the markers defined below."
+                            ></span>
+                        </div>
+                        <div class="row">
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionDeleteStartMarker" placeholder="Start"
+                                       name="optionDeleteMarkers[]" value="<del>"
+                                >
+                                <label class="pl-4" for="optionDeleteStartMarker">Start</label>
+                            </div>
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionDeleteEndMarker" placeholder="End"
+                                       name="optionDeleteMarkers[]" value="</del>"
+                                >
+                                <label class="pl-4" for="optionDeleteEndMarker">End</label>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            Equality Markers
+                            <span data-toggle="tooltip" class="icon icon-questionMark icon-primary"
+                                  title="Equal lines are marked in front by the markers defined below."
+                            ></span>
+                        </div>
+                        <div class="row">
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionEqualityStartMarker"
+                                       placeholder="Start" name="optionEqualityMarkers[]" value="="
+                                >
+                                <label class="pl-4" for="optionEqualityStartMarker">Equal</label>
+                            </div>
+                            <div class="col form-label-group">
+                                <input class="form-control" id="optionEqualityEndMarker"
+                                       placeholder="End" name="optionEqualityMarkers[]" value="X"
+                                >
+                                <label class="pl-4" for="optionEqualityEndMarker">Changed</label>
+                            </div>
+                        </div>
+                        <div class="form-text mb-3">
+                            Note: If the markers are html tags and the chosen output is set to Html, colorization of the
+                            differences is defined by a stylesheet. See the browser's Developer Tools with
+                            <kbd>F12</kbd>.
+                        </div>
+
+                        <div class="btn-group" role="group" aria-label="Apply Options">
+                            <button class="btn btn-primary" type="submit">Apply</button>
+                            <button class="btn btn-secondary" id="resetButton" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col overflow-y" id="renderedDiffs">
+                <!-- Below template is copied and inserted to the DOM when submitting the form above. -->
+                <!-- Template must start with a div element with a id attribute having value "diff" -->
+                <!-- The content of the template's first div element gets overwritten with the data received from the server -->
+                <template id="diffBoxTemplate">
+                    <div class="m-2 p-3 border rounded" id="diff">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer mt-3 py-3 bg-light">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col">
+                <img src="images/DigiLive.png" alt="DigiLive">
+                &copy; 2020 <a href="https://digilive.nl">DigiLive</a>
+            </div>
+            <div class="col ">
+                <img src="images/GitHub-Mark-32px.png" alt="GitHub">
+                Follow us at <a href="https://github.com/JBlond/php-diff">Github</a>
+            </div>
+            <div class="col">
+                Latest Release:
+                <span id="latestRelease">
+                    <span class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"
+></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"
+></script>
+<script src="js/main.js" type="text/javascript"></script>
+
+</body>
+</html>

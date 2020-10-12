@@ -1,0 +1,26 @@
+{
+    "name": "digilive/php-diff-demo",
+    "description": "Demo site for the php-diff package",
+    "license": "proprietary",
+    "type": "metapackage",
+    "minimum-stability": "stable",
+    "keywords": [
+        "php",
+        "diff",
+        "demo",
+        "site"
+    ],
+    "authors": [
+        {
+            "name": "Ferry Cools",
+            "email": "info@digilive.nl",
+            "homepage": "https://digilive.nl"
+        }
+    ],
+    "require": {
+        "php": "~7.2",
+        "ext-curl": "*",
+        "jblond/php-diff": "~2.2.1",
+        "jblond/php-cli": "^1.0"
+    }
+}
