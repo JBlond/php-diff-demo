@@ -20,7 +20,7 @@
     "require": {
         "php": ">=7.2",
         "ext-curl": "*",
-        "jblond/php-diff": "~2.2.1",
+        "jblond/php-diff": "~2.4.0",
         "jblond/php-cli": "^1.0"
     }
 }

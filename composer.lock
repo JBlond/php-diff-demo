@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5b8f8561eed7326bb53faac016bee52",
+    "content-hash": "f034c44d56beda2ab9a76a3d750cbb11",
     "packages": [
         {
             "name": "jblond/php-cli",
@@ -52,27 +52,28 @@
         },
         {
             "name": "jblond/php-diff",
-            "version": "v2.2.1",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JBlond/php-diff.git",
-                "reference": "e6812d018163a60261136621c4cb05499ab995c9"
+                "reference": "054d249c58417ed72117ff570a6b18da69ed4ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JBlond/php-diff/zipball/e6812d018163a60261136621c4cb05499ab995c9",
-                "reference": "e6812d018163a60261136621c4cb05499ab995c9",
+                "url": "https://api.github.com/repos/JBlond/php-diff/zipball/054d249c58417ed72117ff570a6b18da69ed4ddc",
+                "reference": "054d249c58417ed72117ff570a6b18da69ed4ddc",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "ext-pcre": "*",
-                "php": ">=7.2"
+                "php": ">=7.3"
             },
             "require-dev": {
+                "digilive/git-changelog": "^1",
                 "jblond/php-cli": "^1.0",
                 "phpmd/phpmd": "2.*",
-                "phpunit/phpunit": "8.*",
+                "phpunit/phpunit": "^8 || ^9",
                 "squizlabs/php_codesniffer": "*"
             },
             "suggest": {
@@ -107,13 +108,16 @@
                 "diff",
                 "php",
                 "side-by-sidediff",
-                "unified"
+                "udiff",
+                "unidiff",
+                "unified",
+                "unified diff"
             ],
             "support": {
                 "issues": "https://github.com/JBlond/php-diff/issues",
-                "source": "https://github.com/JBlond/php-diff/tree/master"
+                "source": "https://github.com/JBlond/php-diff/tree/v2.4.0"
             },
-            "time": "2020-08-06T12:27:35+00:00"
+            "time": "2021-10-26T18:11:06+00:00"
         }
     ],
     "packages-dev": [],
