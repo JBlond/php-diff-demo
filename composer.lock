@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "jblond/php-cli",
-            "version": "v1.0.8",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JBlond/php-cli.git",
-                "reference": "952d8f6ba643a64ca8791eaad1ac69b176b8e27c"
+                "reference": "86b9053a3de523d70f52eb277db7155210f996c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JBlond/php-cli/zipball/952d8f6ba643a64ca8791eaad1ac69b176b8e27c",
-                "reference": "952d8f6ba643a64ca8791eaad1ac69b176b8e27c",
+                "url": "https://api.github.com/repos/JBlond/php-cli/zipball/86b9053a3de523d70f52eb277db7155210f996c3",
+                "reference": "86b9053a3de523d70f52eb277db7155210f996c3",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             ],
             "support": {
                 "issues": "https://github.com/JBlond/php-cli/issues",
-                "source": "https://github.com/JBlond/php-cli/tree/v1.0.8"
+                "source": "https://github.com/JBlond/php-cli/tree/v1.0.12"
             },
-            "time": "2021-10-27T12:30:13+00:00"
+            "time": "2024-12-16T10:47:01+00:00"
         },
         {
             "name": "jblond/php-diff",
@@ -123,13 +123,13 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.2",
         "ext-curl": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
