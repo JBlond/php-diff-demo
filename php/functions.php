@@ -120,7 +120,7 @@ function arrayToStr(array $array, bool $includeAllKeys = false): string
         $returnValue .= "$value, ";
     }
 
-    return substr("$returnValue", 0, -2);
+    return substr((string) $returnValue, 0, -2);
 }
 
 /**
