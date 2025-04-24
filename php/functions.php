@@ -27,7 +27,7 @@ function getRenderer(string $diffType, string $outputType): object
         throw new Exception('No renderer available!');
     }
 
-    if ($outputType == 'Cli') {
+    if ($outputType === 'Cli') {
         $outputType = 'Text';
         $diffType   .= 'Cli';
     }
@@ -190,7 +190,7 @@ function getDemoRelease(): array
  * @return string Name of closest ANSI color.
  * @throws Exception When the hex formatted color is invalid.
  */
-function getAnsiColor(string $hexColor, $foreGround = true): string
+function getAnsiColor(string $hexColor, bool $foreGround = true): string
 {
     // Predefined colors.
     $foregroundColors = [
@@ -255,9 +255,9 @@ function getAnsiColor(string $hexColor, $foreGround = true): string
         $definedColor[2] = 0xFF & $colorValue;
 
         $distances[$name] = sqrt(
-            pow($colorToHex[0] - $definedColor[0], 2) +
-            pow($colorToHex[1] - $definedColor[1], 2) +
-            pow($colorToHex[2] - $definedColor[2], 2)
+            (($colorToHex[0] - $definedColor[0]) ** 2) +
+            (($colorToHex[1] - $definedColor[1]) ** 2) +
+            (($colorToHex[2] - $definedColor[2]) ** 2)
         );
     }
 
