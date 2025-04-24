@@ -139,10 +139,12 @@ function getLatestRelease(): array
     curl_setopt($ch, CURLOPT_USERAGENT, 'php-diff');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
     $response = curl_exec($ch);
 
     if (curl_error($ch)) {
+        echo curl_error($ch);
         curl_close($ch);
 
         return ['', 'Unable to retrieve version!'];
