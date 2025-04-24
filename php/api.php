@@ -72,11 +72,11 @@ try {
     $diffResult = $diff->Render($renderer);
 
     // Format result
-    if ($outputType == 'Text') {
+    if ($outputType === 'Text') {
         $diffResult = '<pre>' . htmlspecialchars($diffResult) . '</pre>';
     }
 
-    if ($outputType == 'Cli') {
+    if ($outputType === 'Cli') {
         $diffResult = '<pre class="cli">' . htmlspecialchars($diffResult) . '</pre>';
         $diffResult = AnsiToHtml($diffResult);
     }
