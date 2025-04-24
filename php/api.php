@@ -53,10 +53,10 @@ try {
     $outputType = $_GET['outputType'] ?? null;
 
     if ($diffType === null || $outputType === null) {
-        throw new Exception('Diff- or OutputType is undefined!');
+        throw new \RuntimeException('Diff- or OutputType is undefined!');
     }
 
-    if ($outputType == 'Cli' && $rendererOptions['cliColor']) {
+    if ($outputType === 'Cli' && $rendererOptions['cliColor']) {
         // Convert colors to ANSI colors
         $rendererOptions['insertColors'][0] = getAnsiColor($rendererOptions['insertColors'][0]);
         $rendererOptions['insertColors'][1] = getAnsiColor($rendererOptions['insertColors'][1], false);

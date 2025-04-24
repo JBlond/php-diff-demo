@@ -5,7 +5,7 @@ declare(strict_types=1);
 /**
  * Get a renderer for a diff view.
  *
- * Note: The parameters are case sensitive and must match the PSR-4 namespace rules.
+ * Note: The parameters are case-sensitive and must match the PSR-4 namespace rules.
  *
  * @param   string  $diffType    Type of diff view.
  * @param   string  $outputType  Type of output.
@@ -55,7 +55,7 @@ function sendHTML(string $header, string $content)
     header("Pragma: no-cache");
 
     // Echo header if not empty.
-    if ($header != '') {
+    if ($header !== '') {
         echo "$header<br>";
     }
     // Send content to the output buffer and exit script.
@@ -123,11 +123,11 @@ function arrayToStr(array $array, bool $includeAllKeys = false): string
 }
 
 /**
- * Get the version of the Diff package which was released last at github.
+ * Get the version of the Diff package which was released last at GitHub.
  *
  * The return value is always a two-element array.
  * The first element always contains an empty string.
- * The second element contains the version which is received from the github API.
+ * The second element contains the version which is received from the GitHub API.
  *
  * @see https://docs.github.com/en/free-pro-team@latest/rest
  * @return string[]
@@ -164,7 +164,7 @@ function getLatestRelease(): array
  * The first element always contains an empty string.
  * The second element contains the version which is extracted from the Diff class as string.
  *
- * @return string[] An two element array containing the version.
+ * @return string[] A two element array containing the version.
  */
 function getDemoRelease(): array
 {
@@ -181,7 +181,7 @@ function getDemoRelease(): array
 }
 
 /**
- * Get the name of a ANSI color which is closest to a given Hex color.
+ * Get the name of an ANSI color which is closest to a given Hex color.
  *
  * @param   string  $hexColor    Hex color code of the wanted color.
  * @param   bool    $foreGround  True to get foreground color name, False for background color name.
