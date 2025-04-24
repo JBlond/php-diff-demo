@@ -23,8 +23,7 @@ function getRenderer(string $diffType, string $outputType): object
     ];
 
     if (!array_key_exists($diffType, $validCombos) || !in_array($outputType, $validCombos[$diffType])) {
-        // TODO: Throw appropriate Exception
-        throw new Exception('No renderer available!');
+        throw new \RuntimeException('No renderer available!');
     }
 
     if ($outputType === 'Cli') {
@@ -243,7 +242,7 @@ function getAnsiColor(string $hexColor, bool $foreGround = true): string
             break;
         default:
             // TODO: Throw appropriate Exception
-            throw new Exception('Invalid color format!');
+            throw new \RuntimeException('Invalid color format!');
     }
 
     // Calculate distance from requested color to defined colors.
