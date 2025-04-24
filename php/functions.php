@@ -308,7 +308,7 @@ function AnsiToHtml(string $string): string
 
     // Foreground colors.
     foreach ($foreGroundColors as $cli => $hex) {
-        $patterns[]     = "/\x1b\[${cli}m(.*?)\x1b\[0m/";
+        $patterns[]     = "/\x1b\[{$cli}m(.*?)\x1b\[0m/";
         $replacements[] = '<span style="color: ' . $hex . '">$1</span>';
     }
 
@@ -316,7 +316,7 @@ function AnsiToHtml(string $string): string
 
     // Background colors.
     foreach ($backGroundColors as $cli => $hex) {
-        $patterns[]     = "/\x1b\[${cli}m(.*?)\x1b\[0m/";
+        $patterns[]     = "/\x1b\[{$cli}m(.*?)\x1b\[0m/";
         $replacements[] = '<span style="background-color: ' . $hex . '">$1</span>';
     }
 
@@ -324,7 +324,7 @@ function AnsiToHtml(string $string): string
 
     // Background colors with foreground color.
     foreach ($backGroundColors as $cli => $hex) {
-        $patterns[]     = "/\x1b\[${cli}m(.*?<\/span>)/";
+        $patterns[]     = "/\x1b\[{$cli}m(.*?<\/span>)/";
         $replacements[] = '<span style="background-color: ' . $hex . '">$1</span>';
     }
 
